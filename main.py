@@ -35,16 +35,22 @@ def parse_dimensions(line: str, matrix_name: str) -> Tuple[int, int]:
 def parse_row(line: str, expected_cols: int, row_index: int, matrix_name: str) -> List[int]:
     tokens = line.split()
     if len(tokens) < expected_cols:
-        raise MatrixParseError(f"Missing elements in {matrix_name} row {row_index + 1}")
+        raise MatrixParseError(
+            f"Missing elements in a row ({matrix_name}, row {row_index + 1})"
+        )
     if len(tokens) > expected_cols:
-        raise MatrixParseError(f"Extra elements in {matrix_name} row {row_index + 1}")
+        raise MatrixParseError(
+            f"Extra elements in a row ({matrix_name}, row {row_index + 1})"
+        )
 
     row: List[int] = []
     for token in tokens:
         try:
             value = int(token)
         except ValueError as exc:
-            raise MatrixParseError(f"Non-numeric value in {matrix_name} row {row_index + 1}") from exc
+            raise MatrixParseError(
+                f"Non-numeric values detected ({matrix_name}, row {row_index + 1})"
+            ) from exc
         if value < 0 or value > 9:
             raise MatrixParseError(
                 f"Value out of range [0,9] in {matrix_name} row {row_index + 1}"
@@ -67,9 +73,13 @@ def read_one_matrix(lines: List[str], start_idx: int, matrix_name: str) -> Tuple
     matrix: List[List[int]] = []
     for row_i in range(rows):
         if idx >= len(lines):
-            raise MatrixParseError(f"Missing elements in {matrix_name} row {row_i + 1}")
+            raise MatrixParseError(
+                f"Missing elements in a row ({matrix_name}, row {row_i + 1})"
+            )
         if is_blank(lines[idx]):
-            raise MatrixParseError(f"Missing elements in {matrix_name} row {row_i + 1}")
+            raise MatrixParseError(
+                f"Missing elements in a row ({matrix_name}, row {row_i + 1})"
+            )
         matrix.append(parse_row(lines[idx], cols, row_i, matrix_name))
         idx += 1
 
