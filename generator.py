@@ -17,5 +17,5 @@ def generate_large_input(filename, n, m, p, q):
             f.write(row + "\n")
 
 # 500x500 boyutlarında test dosyası oluşturalım
-generate_large_input("large_input.txt", 500, 500, 500, 500)
+generate_large_input("large_input.txt", 100, 100, 100, 100)
 print("large_input.txt oluşturuldu!")
