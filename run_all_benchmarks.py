@@ -14,9 +14,10 @@ def generate_input(filename, n, m, p, q):
 
 def main():
     sizes = [
-        (50, 80, 80, 60),
+       (50, 80, 80, 60),
         (120, 150, 150, 100),
         (200, 200, 200, 200),
+        (300, 300, 300, 300),
     ]
 
     print("=== Matrix Multiplication Multi-Language Benchmark ===\n")
